@@ -19,3 +19,4 @@ probe.py
 # config  files
 auth.py
 config.py
+*.env
