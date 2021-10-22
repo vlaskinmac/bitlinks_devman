@@ -1,6 +1,5 @@
 # Ignore IDE specific files
 .idea/
-../.idea/
 .vscode/
 *.sw*
 *.iml
@@ -17,6 +16,9 @@ __pycache__
 Thumbs.db
 .DS_Store
 probe.py
+.idea/misc.xml
+.idea/workspace.xml
+
 # config  files
 auth.py
 config.py
