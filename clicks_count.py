@@ -3,9 +3,11 @@ import requests
 from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
+
 load_dotenv()
 
 
+# Link example
 # https://dvmn.org
 
 
@@ -15,8 +17,6 @@ class Bitlinks:
         self.token = os.getenv('token')
         self.url = "https://api-ssl.bitly.com/v4/bitlinks"
         self.units_days = 5
-
-
 
     def shorten_link(self, link):
         headers = {
