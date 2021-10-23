@@ -14,7 +14,7 @@ load_dotenv()
 class Bitlinks:
 
     def __init__(self):
-        self.token = os.getenv('token')
+        self.token = os.getenv("API_KEY")
         self.url = "https://api-ssl.bitly.com/v4/bitlinks"
         self.units_days = 5
 
@@ -29,7 +29,7 @@ class Bitlinks:
         response = requests.post(url=self.url, json=payload, headers=headers)
         response.raise_for_status()
         logging.warning(response.status_code)
-        return response.json()['link']
+        return response.json()["link"]
 
     def count_clicks_per_date(self, link):
         parsed_link = urlparse(link)
