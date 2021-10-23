@@ -78,7 +78,7 @@ The number of days is specified in the constructor variable of the class `self.u
 class Bitlinks:
 
     def __init__(self):
-        self.token = os.getenv('API_KEY')
+        self.token = os.getenv("API_KEY")
         self.url = "https://api-ssl.bitly.com/v4/bitlinks"
         self.units_days = 5
 
