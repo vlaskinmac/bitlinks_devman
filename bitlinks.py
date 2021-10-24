@@ -11,60 +11,62 @@ load_dotenv()
 # https://dvmn.org
 
 
-class Bitlinks:
+def shorten_link(url, link, token):
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "long_url": f"{link}"
+    }
+    response = requests.post(url=url, json=payload, headers=headers)
+    response.raise_for_status()
+    logging.warning(response.status_code)
+    return response.json()["link"]
 
-    def __init__(self):
-        self.token = os.getenv("API_KEY")
-        self.url = "https://api-ssl.bitly.com/v4/bitlinks"
 
-    def shorten_link(self, link):
-        headers = {
-            "Authorization": f"Bearer {self.token}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "long_url": f"{link}"
-        }
-        response = requests.post(url=self.url, json=payload, headers=headers)
-        logging.warning(response.status_code)
-        return response.json()["link"]
+def count_clicks_total(url, link, token):
+    parsed_link = urlparse(link)
+    url_link = f"{url}/{parsed_link.netloc}{parsed_link.path}/clicks/summary"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "unit": "day"
+    }
+    response = requests.get(url=url_link, params=payload, headers=headers)
+    logging.warning(response.status_code)
+    return response.json()
 
-    def count_clicks_total(self, link):
-        parsed_link = urlparse(link)
-        url_link = f"{self.url}/{parsed_link.netloc}{parsed_link.path}/clicks/summary"
-        headers = {
-            "Authorization": f"Bearer {self.token}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "unit": "day"
-        }
-        response = requests.get(url=url_link, params=payload, headers=headers)
-        logging.warning(response.status_code)
-        return response.json()
 
-    def check_link(self):
+def check_link(url, token):
+    try:
         try:
-            try:
-                link = input("Введите полный адрес ссылки: ")
-                print("Вы ввели длинную ссылку! \n Bitlink: ", self.shorten_link(link))
-            except:
-                print("Вы ввели Bitlink! \n")
-                print("Сумма кликов Bitlink:", self.count_clicks_total(link)["total_clicks"], "\n")
-        except requests.exceptions.HTTPError as exc:
-            logging.warning(exc)
-            print(exc)
+            link = input("Введите полный адрес ссылки: ")
+            print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(url=url,
+                                                                        link=link,
+                                                                        token=token)
+                  )
+        except:
+
+            print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
+                  count_clicks_total(url=url, link=link, token=token)["total_clicks"], "\n")
+    except requests.exceptions.HTTPError as exc:
+        logging.warning(exc)
+        print(exc)
 
 
 def main():
+    token = os.getenv("API_KEY")
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
     logging.basicConfig(
         level=logging.WARNING,
         filename="logs.log",
         filemode="w",
         format="%(asctime)s - [%(levelname)s] - %(message)s"
     )
-    bitlinks = Bitlinks()
-    bitlinks.check_link()
+    check_link(url=url, token=token)
 
 
 if __name__ == "__main__":
