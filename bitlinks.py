@@ -39,16 +39,19 @@ def count_clicks_total(url, link, token):
 def check_link(url, token):
     try:
         try:
-            link = input("Введите полный адрес ссылки: ")
-            print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(url=url,
-                                                                        link=link,
-                                                                        token=token)
-                  )
-        except:
-
-            print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
-                  count_clicks_total(url=url, link=link, token=token)["total_clicks"], "\n")
-    except requests.exceptions.HTTPError as exc:
+            try:
+                link = input("Введите полный адрес ссылки: ")
+                print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(url=url,
+                                                                            link=link,
+                                                                            token=token)
+                      )
+            except:
+                print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
+                      count_clicks_total(url=url, link=link, token=token)["total_clicks"], "\n")
+        except requests.exceptions.HTTPError as exc:
+            logging.warning(exc)
+            print(exc)
+    except ValueError as exc:
         logging.warning(exc)
         print(exc)
 
