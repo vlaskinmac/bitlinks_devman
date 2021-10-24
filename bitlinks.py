@@ -16,7 +16,6 @@ class Bitlinks:
     def __init__(self):
         self.token = os.getenv("API_KEY")
         self.url = "https://api-ssl.bitly.com/v4/bitlinks"
-        self.units_days = 5
 
     def shorten_link(self, link):
         headers = {
@@ -31,22 +30,6 @@ class Bitlinks:
         logging.warning(response.status_code)
         return response.json()["link"]
 
-    def count_clicks_per_date(self, link):
-        parsed_link = urlparse(link)
-
-        url_link = f"{self.url}/{parsed_link.netloc}{parsed_link.path}/clicks"
-        headers = {
-            "Authorization": f"Bearer {self.token}",
-            "Content-Type": "application/json"
-        }
-        payload = {
-            "unit": "day", "units": 5
-        }
-        response = requests.get(url=url_link, params=payload, headers=headers)
-        response.raise_for_status()
-        logging.warning(response.status_code)
-        return response.json()
-
     def count_clicks_total(self, link):
         parsed_link = urlparse(link)
         url_link = f"{self.url}/{parsed_link.netloc}{parsed_link.path}/clicks/summary"
@@ -55,7 +38,7 @@ class Bitlinks:
             "Content-Type": "application/json"
         }
         payload = {
-            "unit": "day", "units": self.units_days
+            "unit": "day"
         }
         response = requests.get(url=url_link, params=payload, headers=headers)
         response.raise_for_status()
@@ -68,13 +51,7 @@ class Bitlinks:
                 link = input("Введите полный адрес ссылки: ")
                 print("Битлинк: ", self.shorten_link(link))
             except:
-                clicks_per_date = self.count_clicks_per_date(link)["link_clicks"]
-                print("Сумма кликов:", self.count_clicks_total(link)["total_clicks"], "\n")
-                print("Кликов по дням:")
-                for i in range(0, self.units_days):
-                    parse_date = clicks_per_date[i]["date"]
-                    parse_date = str(parse_date).split("T")[0]
-                    print(f'Кликов: {clicks_per_date[i]["clicks"]} - {parse_date}')
+                print("Сумма кликов всего:", self.count_clicks_total(link)["total_clicks"], "\n")
         except requests.exceptions.HTTPError as exc:
             logging.warning(exc)
             print(exc)
