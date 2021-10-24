@@ -26,17 +26,6 @@ pip3 install -r requirements.txt
 
 ```
 
-## Import
-
-```python
-import logging
-import requests
-from urllib.parse import urlparse
-import os
-from dotenv import load_dotenv
-
-```
-
 ## Connecting the API key
 
 You need to create a `.env` file and write all sensitive data into it, like this:
