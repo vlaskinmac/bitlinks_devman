@@ -5,7 +5,7 @@ This script is written as part of the task of the courses [Devman](https://dvmn.
 
 - When entering a betlink into the program, the sum of clicks on it and the sum of clicks on individual days will be displayed.
 
-- When entering other links, a bitlink is output
+- When entering other links, a bitlink is output.
 
 ## Getting Started
 
@@ -13,16 +13,16 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Python Version
 
-Python 3.6 and later
+Python 3.6 and later.
 
 ### Installing
 
-To install the software, you need to install the dependency packages from the file: **requirements.txt**
+To install the software, you need to install the dependency packages from the file: **requirements.txt**.
 
 Perform the command:
 
 ```
-python pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Import
