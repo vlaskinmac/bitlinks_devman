@@ -7,10 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-# Link example
-# https://dvmn.org
-
-
 def shorten_link(url, link, token):
     headers = {
         "Authorization": f"Bearer {token}",
