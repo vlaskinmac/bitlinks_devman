@@ -27,7 +27,7 @@ pip3 install -r requirements.txt
 ```
 ## Getting API key
 
-- To get the API key. You need to log in to the service link: [`Bitly`](https://bitly.com/)
+- To get the API key. You need to log in to the service link: [`Bitly`](https://bitly.com/).
 - In the developer settings menu, select the API and access token.
 
 ### Connecting the API key
