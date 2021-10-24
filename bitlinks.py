@@ -54,7 +54,7 @@ def check_link(url, token):
 
 
 def main():
-    token = os.getenv("API_KEY")
+    token = os.getenv("BITLY_ACCESS_API_TOKEN")
     url = "https://api-ssl.bitly.com/v4/bitlinks"
     logging.basicConfig(
         level=logging.WARNING,
