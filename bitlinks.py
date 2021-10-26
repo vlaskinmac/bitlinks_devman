@@ -13,7 +13,7 @@ def shorten_link(link, token):
         "Content-Type": "application/json"
     }
     payload = {
-        "long_url": f"{link}"
+        "long_url": link
     }
     response = requests.post(url=url, json=payload, headers=headers)
     response.raise_for_status()
