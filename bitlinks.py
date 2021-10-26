@@ -56,17 +56,15 @@ def is_bitlink(token, link):
 
 
 def printing(token, link):
-    url = "https://api-ssl.bitly.com/v4/bitlinks"
-    var_is_bitlink = is_bitlink(url=url, token=token, link=link)
+    var_is_bitlink = is_bitlink(token=token, link=link)
     try:
         if not var_is_bitlink:
-            print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(url=url,
-                                                                        link=link,
+            print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(link=link,
                                                                         token=token)
                   )
         else:
             print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
-                  count_clicks_total(url=url, link=link, token=token)["total_clicks"], "\n")
+                  count_clicks_total(link=link, token=token)["total_clicks"], "\n")
     except KeyError as exc:
         logging.warning(exc)
         print('Ошибка в параметре: ', exc)
