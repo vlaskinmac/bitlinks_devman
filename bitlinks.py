@@ -2,6 +2,7 @@ import logging
 import requests
 from urllib.parse import urlparse
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -36,25 +37,42 @@ def count_clicks_total(url, link, token):
     return response.json()
 
 
-def check_link(url, token):
+def is_bitlink(url, token, link):
+    flag = False
+    parsed_link = urlparse(link)
+    url_link = f"{url}/{parsed_link.netloc}{parsed_link.path}"
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/json"
+    }
     try:
-        try:
-            link = input("Введите полный адрес ссылки: ")
+        response = requests.get(url=url_link, headers=headers)
+        if response.ok:
+            flag = True
+            return flag
+    except:
+        return flag
+
+
+def printing(url, token, link):
+    var_is_bitlink = is_bitlink(url=url, token=token, link=link)
+    try:
+        if not var_is_bitlink:
             print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(url=url,
                                                                         link=link,
                                                                         token=token)
                   )
-        except:
-
+        else:
             print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
                   count_clicks_total(url=url, link=link, token=token)["total_clicks"], "\n")
-    except requests.exceptions.HTTPError as exc:
+    except KeyError as exc:
         logging.warning(exc)
-        print(exc)
+        print('Ошибка в параметре: ', exc)
 
 
 def main():
-    token = os.getenv("API_KEY")
+    link = input("Введите полный адрес ссылки: ")
+    token = os.getenv("BITLY_ACCESS_TOKEN")
     url = "https://api-ssl.bitly.com/v4/bitlinks"
     logging.basicConfig(
         level=logging.WARNING,
@@ -62,7 +80,7 @@ def main():
         filemode="w",
         format="%(asctime)s - [%(levelname)s] - %(message)s"
     )
-    check_link(url=url, token=token)
+    printing(url=url, token=token, link=link)
 
 
 if __name__ == "__main__":

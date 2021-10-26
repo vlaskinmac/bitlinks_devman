@@ -23,25 +23,19 @@ Perform the command:
 
 ```
 pip3 install -r requirements.txt
-```
-
-## Import
-
-```python
-import logging
-import requests
-from urllib.parse import urlparse
-import os
-from dotenv import load_dotenv
 
 ```
+## Getting API key
 
-## Connecting the API key
+- To get the API key. You need to log in to the service link: [`Bitly`](https://bitly.com/).
+- In the developer settings menu, select the API and access token.
+
+### Connecting the API key
 
 You need to create a `.env` file and write all sensitive data into it, like this:
 
 ```python
-API_KEY = "272a05d39ec46fdac5be4ac7be45f3f"
+BITLY_ACCESS_TOKEN="272a05d39ec46fdac5be4ac7be45f3f"
 ```
 
 ## Examples
