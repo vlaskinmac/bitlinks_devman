@@ -1,9 +1,9 @@
 import logging
-import requests
-from urllib.parse import urlparse
 import os
 
+import requests
 from dotenv import load_dotenv
+from urllib.parse import urlparse
 
 
 def shorten_link(link, token):
