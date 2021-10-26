@@ -2,6 +2,7 @@ import logging
 import requests
 from urllib.parse import urlparse
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
