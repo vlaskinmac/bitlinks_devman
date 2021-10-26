@@ -6,7 +6,8 @@ import os
 from dotenv import load_dotenv
 
 
-def shorten_link(url, link, token):
+def shorten_link(link, token):
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
@@ -20,7 +21,8 @@ def shorten_link(url, link, token):
     return response.json()["link"]
 
 
-def count_clicks_total(url, link, token):
+def count_clicks_total(link, token):
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
     parsed_link = urlparse(link)
     url_link = f"{url}/{parsed_link.netloc}{parsed_link.path}/clicks/summary"
     headers = {
@@ -35,7 +37,8 @@ def count_clicks_total(url, link, token):
     return response.json()
 
 
-def is_bitlink(url, token, link):
+def is_bitlink(token, link):
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
     flag = False
     parsed_link = urlparse(link)
     url_link = f"{url}/{parsed_link.netloc}{parsed_link.path}"
@@ -52,7 +55,8 @@ def is_bitlink(url, token, link):
         return flag
 
 
-def printing(url, token, link):
+def printing(token, link):
+    url = "https://api-ssl.bitly.com/v4/bitlinks"
     var_is_bitlink = is_bitlink(url=url, token=token, link=link)
     try:
         if not var_is_bitlink:
@@ -72,14 +76,13 @@ def main():
     load_dotenv()
     link = input("Введите полный адрес ссылки: ")
     token = os.getenv("BITLY_ACCESS_TOKEN")
-    url = "https://api-ssl.bitly.com/v4/bitlinks"
     logging.basicConfig(
         level=logging.WARNING,
         filename="logs.log",
         filemode="w",
         format="%(asctime)s - [%(levelname)s] - %(message)s"
     )
-    printing(url=url, token=token, link=link)
+    printing(token=token, link=link)
 
 
 if __name__ == "__main__":
