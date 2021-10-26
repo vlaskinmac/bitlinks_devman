@@ -5,8 +5,6 @@ import os
 
 from dotenv import load_dotenv
 
-load_dotenv()
-
 
 def shorten_link(url, link, token):
     headers = {
@@ -71,6 +69,7 @@ def printing(url, token, link):
 
 
 def main():
+    load_dotenv()
     link = input("Введите полный адрес ссылки: ")
     token = os.getenv("BITLY_ACCESS_TOKEN")
     url = "https://api-ssl.bitly.com/v4/bitlinks"
