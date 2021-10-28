@@ -40,20 +40,16 @@ def count_clicks_total(link, token):
 
 def is_bitlink(token, link):
     url = "https://api-ssl.bitly.com/v4/bitlinks"
-    flag = False
+
     parsed_link = urlparse(link)
     url_link = f"{url}/{parsed_link.netloc}{parsed_link.path}"
     headers = {
         "Authorization": f"Bearer {token}",
         "Content-Type": "application/json"
     }
-    try:
-        response = requests.get(url=url_link, headers=headers)
-        if response.ok:
-            flag = True
-            return flag
-    except:
-        return flag
+    response = requests.get(url=url_link, headers=headers)
+    if response.ok:
+        return response.ok
 
 
 def main():
@@ -66,9 +62,8 @@ def main():
         filemode="w",
         format="%(asctime)s - [%(levelname)s] - %(message)s"
     )
-    var_is_bitlink = is_bitlink(token=token, link=link)
     try:
-        if not var_is_bitlink:
+        if not is_bitlink(token=token, link=link):
             print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(link=link,
                                                                         token=token)
                   )
