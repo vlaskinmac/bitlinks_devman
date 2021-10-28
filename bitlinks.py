@@ -1,9 +1,9 @@
 import logging
 import os
+from urllib.parse import urlparse
 
 import requests
 from dotenv import load_dotenv
-from urllib.parse import urlparse
 
 
 def shorten_link(link, token):
@@ -54,7 +54,16 @@ def is_bitlink(token, link):
         return flag
 
 
-def printing(token, link):
+def main():
+    load_dotenv()
+    link = input("Введите полный адрес ссылки: ")
+    token = os.getenv("BITLY_ACCESS_TOKEN")
+    logging.basicConfig(
+        level=logging.WARNING,
+        filename="logs.log",
+        filemode="w",
+        format="%(asctime)s - [%(levelname)s] - %(message)s"
+    )
     var_is_bitlink = is_bitlink(token=token, link=link)
     try:
         if not var_is_bitlink:
@@ -67,19 +76,7 @@ def printing(token, link):
     except KeyError as exc:
         logging.warning(exc)
         print('Ошибка в параметре: ', exc)
-
-
-def main():
-    load_dotenv()
-    link = input("Введите полный адрес ссылки: ")
-    token = os.getenv("BITLY_ACCESS_TOKEN")
-    logging.basicConfig(
-        level=logging.WARNING,
-        filename="logs.log",
-        filemode="w",
-        format="%(asctime)s - [%(levelname)s] - %(message)s"
-    )
-    printing(token=token, link=link)
+    is_bitlink(token=token, link=link)
 
 
 if __name__ == "__main__":
