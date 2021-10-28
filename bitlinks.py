@@ -4,7 +4,6 @@ from urllib.parse import urlparse
 
 import requests
 from dotenv import load_dotenv
-from urllib.parse import urlparse
 
 
 def shorten_link(link, token):
