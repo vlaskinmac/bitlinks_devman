@@ -64,15 +64,16 @@ def main():
     )
     try:
         if not is_bitlink(token=token, link=link):
-            print("\nВы ввели длинную ссылку!\nBitlink: ", shorten_link(link=link,
-                                                                        token=token)
+            print(
+                "\nВы ввели длинную ссылку!\nBitlink: ",
+                shorten_link(link=link, token=token)
                   )
         else:
             print("\nВы ввели Bitlink!\nСумма кликов Bitlink:",
                   count_clicks_total(link=link, token=token)["total_clicks"], "\n")
     except KeyError as exc:
         logging.warning(exc)
-        print('Ошибка в параметре: ', exc)
+        print("Ошибка в параметре: ", exc)
     is_bitlink(token=token, link=link)
 
 
