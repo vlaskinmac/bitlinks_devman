@@ -16,6 +16,7 @@ def shorten_link(link, token):
         "long_url": link
     }
     response = requests.post(url=url, json=payload, headers=headers)
+    response.raise_for_status()
     logging.warning(response.status_code)
     return response.json()["link"]
 
@@ -32,6 +33,7 @@ def count_clicks_total(link, token):
         "unit": "day"
     }
     response = requests.get(url=url_link, params=payload, headers=headers)
+    response.raise_for_status()
     logging.warning(response.status_code)
     return response.json()
 
