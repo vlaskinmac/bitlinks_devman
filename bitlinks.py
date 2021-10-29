@@ -79,10 +79,6 @@ def main():
                   )
     except KeyError as exc:
         logging.warning(exc)
-    is_bitlink(
-        token=token,
-        link=link,
-    )
 
 
 if __name__ == "__main__":
