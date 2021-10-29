@@ -79,7 +79,6 @@ def main():
                   )
     except KeyError as exc:
         logging.warning(exc)
-        print("Ошибка в параметре: ", exc)
     is_bitlink(
         token=token,
         link=link,
