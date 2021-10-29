@@ -48,8 +48,7 @@ def is_bitlink(token, link):
         "Content-Type": "application/json",
     }
     response = requests.get(url=url_link, headers=headers)
-    if response.ok:
-        return response.ok
+    return response.ok
 
 
 def main():
