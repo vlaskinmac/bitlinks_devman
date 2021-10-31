@@ -38,6 +38,10 @@ You need to create a `.env` file and write all sensitive data into it, like this
 ```python
 BITLY_ACCESS_TOKEN="272a05d39ec46fdac5be4ac7be45f3f"
 ```
+## Launch code
+#### Arguments
+- To run the code, use the required arguments `-n` or `--name`
+- To call help, use the required arguments `-h` or `--help`
 
 ## Examples
 
