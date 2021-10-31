@@ -41,12 +41,12 @@ BITLY_ACCESS_TOKEN="272a05d39ec46fdac5be4ac7be45f3f"
 
 ## Examples
 
-### Getting a bitlink
+### Getting a one bitlink
 
 Enter link: [`https://dvmn.org`](https://dvmn.org)
 
 ```python
->>> Введите полный адрес ссылки: https://dvmn.org
+>>> $ python bitlinks.py -n https://dvmn.org
  Вы ввели длинную ссылку!
  Bitlink:  https://bit.ly/2P4hRWf
 
@@ -56,12 +56,45 @@ Enter link: [`https://dvmn.org`](https://dvmn.org)
 Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf)
 
 ```python
->>> Введите полный адрес ссылки: https://bit.ly/2P4hRWf
+>>> $ python bitlinks.py -n https://bit.ly/2P4hRWf
+  
+  Вы ввели Bitlink!
+  Сумма кликов Bitlink: 7
+  
+```
+### Getting multiple bitlinks
+
+Enter links: [`https://dvmn.org`](https://dvmn.org), [`https://www.google.ru`](https://www.google.ru), [`https://twitter.com`](https://twitter.com)
+
+```python
+>>> $ python bitlinks.py -n https://dvmn.org https://www.google.ru https://twitter.com
+
+ Вы ввели длинную ссылку!
+ Bitlink:  https://bit.ly/2P4hRWf
+ 
+ Вы ввели длинную ссылку!
+ Bitlink:  https://bit.ly/3BIc8M9
+
+ Вы ввели длинную ссылку!
+ Bitlink:  https://bit.ly/2ZIU8UN
+
+```
+### Getting the total clicks
+
+Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf) [`https://bit.ly/3BIc8M9`](https://bit.ly/3BIc8M9) [`https://bit.ly/2ZIU8UN`](https://bit.ly/2ZIU8UN)
+
+```python
+>>> $ python bitlinks.py -n https://bit.ly/2P4hRWf https://bit.ly/3BIc8M9 https://bit.ly/2ZIU8UN
   
   Вы ввели Bitlink!
   Сумма кликов Bitlink: 7 
-```
 
+  Вы ввели Bitlink!
+  Сумма кликов Bitlink: 4 
+
+  Вы ввели Bitlink!
+  Сумма кликов Bitlink: 11
+```
 ## Authors
 
 **vlaskinmac**  - [GitHub-vlaskinmac](https://github.com/vlaskinmac/)
