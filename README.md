@@ -85,7 +85,7 @@ Enter links: [`https://dvmn.org`](https://dvmn.org), [`https://www.google.ru`](h
 ```
 ### Getting the total clicks
 
-Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf) [`https://bit.ly/3BIc8M9`](https://bit.ly/3BIc8M9) [`https://bit.ly/2ZIU8UN`](https://bit.ly/2ZIU8UN)
+Enter bitlinks: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf) [`https://bit.ly/3BIc8M9`](https://bit.ly/3BIc8M9) [`https://bit.ly/2ZIU8UN`](https://bit.ly/2ZIU8UN)
 
 ```python
 >>> $ python bitlinks.py -n https://bit.ly/2P4hRWf https://bit.ly/3BIc8M9 https://bit.ly/2ZIU8UN
@@ -99,6 +99,7 @@ Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf) [`https://bit.
   Вы ввели Bitlink!
   Сумма кликов Bitlink: 11
 ```
+
 ## Authors
 
 **vlaskinmac**  - [GitHub-vlaskinmac](https://github.com/vlaskinmac/)
