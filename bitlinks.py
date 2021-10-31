@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 from urllib.parse import urlparse
@@ -77,5 +78,18 @@ def main():
         logging.warning(exc)
 
 
+def create_parser():
+    parser = argparse.ArgumentParser(
+        description="Skript shorten links and sum clicks by shorten links"
+    )
+    parser.add_argument(
+        "-n", "--name", nargs="+",
+        required=True, help="Input links or bitlinks use arguments: '-n or --name'"
+    )
+    args = parser.parse_args()
+    if args.name:
+        main(links_list=args.name)
+
+
 if __name__ == "__main__":
-    main()
+    create_parser()
