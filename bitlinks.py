@@ -52,9 +52,8 @@ def is_bitlink(token, link):
     return response.ok
 
 
-def main():
+def main(links_list):
     load_dotenv()
-    link = input("Введите полный адрес ссылки: ")
     token = os.getenv("BITLY_ACCESS_TOKEN")
     logging.basicConfig(
         level=logging.WARNING,
@@ -63,17 +62,18 @@ def main():
         format="%(asctime)s - [%(levelname)s] - %(message)s",
     )
     try:
-        if not is_bitlink(token=token, link=link):
-            print(
-                "\nВы ввели длинную ссылку!\nBitlink: ",
-                shorten_link(link=link, token=token, )
-            )
-        else:
-            print(
-                "\nВы ввели Bitlink!\nСумма кликов Bitlink:",
-                count_clicks_total(link=link, token=token, )["total_clicks"],
-                "\n",
-            )
+        for link in links_list:
+            if not is_bitlink(token=token, link=link):
+                print(
+                    "\nВы ввели длинную ссылку!\nBitlink: ",
+                    shorten_link(link=link, token=token, )
+                )
+            else:
+                print(
+                    "\nВы ввели Bitlink!\nСумма кликов Bitlink:",
+                    count_clicks_total(link=link, token=token, )["total_clicks"],
+                    "\n",
+                )
     except KeyError as exc:
         logging.warning(exc)
 
