@@ -52,7 +52,20 @@ def is_bitlink(token, link):
     return response.ok
 
 
-def main(links_list):
+def create_parser():
+    parser = argparse.ArgumentParser(
+        description="Skript shorten links and sum clicks by shorten links"
+    )
+    parser.add_argument(
+        "-n", "--name", nargs="+",
+        required=True, help="Input links or bitlinks use arguments: '-n or --name'"
+    )
+    if parser.parse_args().name:
+        return parser.parse_args().name
+
+
+def main():
+    links_list = create_parser()
     load_dotenv()
     token = os.getenv("BITLY_ACCESS_TOKEN")
     logging.basicConfig(
@@ -78,18 +91,5 @@ def main(links_list):
         logging.warning(exc)
 
 
-def create_parser():
-    parser = argparse.ArgumentParser(
-        description="Skript shorten links and sum clicks by shorten links"
-    )
-    parser.add_argument(
-        "-n", "--name", nargs="+",
-        required=True, help="Input links or bitlinks use arguments: '-n or --name'"
-    )
-    args = parser.parse_args()
-    if args.name:
-        main(links_list=args.name)
-
-
 if __name__ == "__main__":
-    create_parser()
+    main()
