@@ -3,7 +3,7 @@ Operations with bitlinks.
 
 This script is written as part of the task of the courses [Devman](https://dvmn.org).
 
-- When entering a betlink into the program, the sum of clicks on it and the sum.
+- When entering a bitlink into the program, outputs the sum of clicks on it.
 
 - When entering other links, a bitlink is output.
 
