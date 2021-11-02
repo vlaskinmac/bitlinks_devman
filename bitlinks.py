@@ -65,7 +65,7 @@ def create_parser():
 
 
 def main():
-    links_list = create_parser()
+    links = create_parser()
     load_dotenv()
     token = os.getenv("BITLY_ACCESS_TOKEN")
     logging.basicConfig(
@@ -75,7 +75,7 @@ def main():
         format="%(asctime)s - [%(levelname)s] - %(message)s",
     )
     try:
-        for link in links_list:
+        for link in links:
             if not is_bitlink(token=token, link=link):
                 print(
                     "\nВы ввели длинную ссылку!\nBitlink: ",
