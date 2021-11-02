@@ -57,8 +57,8 @@ def create_parser():
         description="Skript shorten links and sum clicks by shorten links"
     )
     parser.add_argument(
-        "-n", "--name", nargs="+",
-        required=True, help="Input links or bitlinks use arguments: '-n or --name'"
+        "name", nargs="+",
+        help="Input links or bitlinks"
     )
     if parser.parse_args().name:
         return parser.parse_args().name
