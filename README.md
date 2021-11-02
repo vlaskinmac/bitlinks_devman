@@ -38,19 +38,13 @@ You need to create a `.env` file and write all sensitive data into it, like this
 ```python
 BITLY_ACCESS_TOKEN="272a05d39ec46fdac5be4ac7be45f3f"
 ```
-## Launch code
-#### Arguments
-- To run the code, use the required arguments `-n` or `--name`
-- To call help, use the required arguments `-h` or `--help`
-
-## Examples
 
 ### Getting a one bitlink
 
 Enter link: [`https://dvmn.org`](https://dvmn.org)
 
 ```python
->>> $ python bitlinks.py -n https://dvmn.org
+>>> $ python bitlinks.py https://dvmn.org
  Вы ввели длинную ссылку!
  Bitlink:  https://bit.ly/2P4hRWf
 
@@ -60,7 +54,7 @@ Enter link: [`https://dvmn.org`](https://dvmn.org)
 Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf)
 
 ```python
->>> $ python bitlinks.py -n https://bit.ly/2P4hRWf
+>>> $ python bitlinks.py https://bit.ly/2P4hRWf
   
   Вы ввели Bitlink!
   Сумма кликов Bitlink: 7
@@ -71,7 +65,7 @@ Enter bitlink: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf)
 Enter links: [`https://dvmn.org`](https://dvmn.org), [`https://www.google.ru`](https://www.google.ru), [`https://twitter.com`](https://twitter.com)
 
 ```python
->>> $ python bitlinks.py -n https://dvmn.org https://www.google.ru https://twitter.com
+>>> $ python bitlinks.py https://dvmn.org https://www.google.ru https://twitter.com
 
  Вы ввели длинную ссылку!
  Bitlink:  https://bit.ly/2P4hRWf
@@ -88,7 +82,7 @@ Enter links: [`https://dvmn.org`](https://dvmn.org), [`https://www.google.ru`](h
 Enter bitlinks: [`https://bit.ly/2P4hRWf`](https://bit.ly/2P4hRWf) [`https://bit.ly/3BIc8M9`](https://bit.ly/3BIc8M9) [`https://bit.ly/2ZIU8UN`](https://bit.ly/2ZIU8UN)
 
 ```python
->>> $ python bitlinks.py -n https://bit.ly/2P4hRWf https://bit.ly/3BIc8M9 https://bit.ly/2ZIU8UN
+>>> $ python bitlinks.py https://bit.ly/2P4hRWf https://bit.ly/3BIc8M9 https://bit.ly/2ZIU8UN
   
   Вы ввели Bitlink!
   Сумма кликов Bitlink: 7 
