@@ -52,7 +52,7 @@ def is_bitlink(token, link):
     return response.ok
 
 
-def create_parser():
+def gets_link_from_user():
     parser = argparse.ArgumentParser(
         description="Skript shorten links and sum clicks by shorten links"
     )
@@ -66,7 +66,7 @@ def create_parser():
 
 
 def main():
-    links = create_parser()
+    links = gets_link_from_user()
     load_dotenv()
     token = os.getenv("BITLY_ACCESS_TOKEN")
     logging.basicConfig(
