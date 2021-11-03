@@ -60,9 +60,9 @@ def gets_link_from_user():
         "link", nargs="+",
         help="Input links or bitlinks"
     )
-    args = parser.parse_args()
-    if args.link:
-        return args.link
+    args_link = parser.parse_args().link
+    if args_link:
+        return args_link
 
 
 def main():
